@@ -1,38 +1,61 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  position: relative;
+  height: 100vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('your_background_image.jpg');
+  background-size: cover;
+  opacity: 0.8;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.container {
+  position: relative;
+  z-index: 1;
+}
+
+.profile-circle, .github-circle, .linkedin-circle {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  position: absolute;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.profile-circle {
+  background-color: #ffffff;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.github-circle {
+  background-color: #333333;
+  top: 40%;
+  right: 10%;
+}
+
+.linkedin-circle {
+  background-color: #0e76a8;
+  bottom: 10%;
+  right: 10%;
+}
+
+.profile-circle:hover, .github-circle:hover, .linkedin-circle:hover {
+  transform: scale(1.1);
+}
+
+.profile-picture {
+  width: 80%;
+  height: auto;
+  border-radius: 50%;
 }

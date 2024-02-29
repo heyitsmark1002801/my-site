@@ -40,14 +40,16 @@
 
 .github-circle {
   background-color: #333333;
-  top: 40%;
-  right: 10%;
+  top: 50%;
+  left: calc(50% - 220px); /* Adjust left position to be slightly left of the profile circle */
+  transform: translate(0, -50%);
 }
 
 .linkedin-circle {
   background-color: #0e76a8;
-  bottom: 10%;
-  right: 10%;
+  top: 50%;
+  left: calc(50% + 220px); /* Adjust left position to be slightly right of the profile circle */
+  transform: translate(0, -50%);
 }
 
 .profile-circle:hover, .github-circle:hover, .linkedin-circle:hover {

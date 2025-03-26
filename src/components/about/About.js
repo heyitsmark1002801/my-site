@@ -1,60 +1,76 @@
 import React from 'react';
-import Style from './About.module.scss';
-import Terminal from "./Terminal";
-import {Box} from "@mui/material";
-import {info} from "../../info/Info";
+import { Box, Typography, Divider } from "@mui/material";
+import { info } from "../../info/Info";
 
-
-export default function About({innerRef}) {
-    const firstName = info.firstName.toLowerCase()
-
-    function aboutMeText() {
-        return <>
-            <p><span style={{color: info.baseColor}}>{firstName}{info.lastName.toLowerCase()} $</span> cat
-                about{firstName} </p>
-            <p><span style={{color: info.baseColor}}>about{firstName} <span
-                className={Style.green}>(main)</span> $ </span>
-                {info.bio}
-            </p>
-        </>;
-    }
-
-    function skillsText() {
-        return <>
-            <p><span style={{color: info.baseColor}}>{firstName}{info.lastName.toLowerCase()} $</span> cd skills/tools
-            </p>
-            <p><span style={{color: info.baseColor}}>skills/tools <span
-                className={Style.green}>(main)</span> $</span> ls</p>
-            <p style={{color: info.baseColor}}> Proficient With</p>
-            <ul className={Style.skills}>
-                {info.skills.proficientWith.map((proficiency, index) => <li key={index}>{proficiency}</li>)}
-            </ul>
-            <p style={{color: info.baseColor}}> Exposed To</p>
-            <ul className={Style.skills}>
-                {info.skills.exposedTo.map((skill, index) => <li key={index}>{skill}</li>)}
-            </ul>
-        </>;
-    }
-
-    function miscText() {
-        return <>
-            <p><span style={{color: info.baseColor}}>{firstName}{info.lastName.toLowerCase()} $</span> cd
-                hobbies/interests</p>
-            <p><span style={{color: info.baseColor}}>hobbies/interests <span
-                className={Style.green}>(main)</span> $</span> ls</p>
-            <ul>
-                {info.hobbies.map((hobby, index) => (
-                    <li key={index}><Box component={'span'} mr={'1rem'}>{hobby.emoji}</Box>{hobby.label}</li>
-                ))}
-            </ul>
-        </>;
-    }
-
+export default function About({ innerRef }) {
     return (
-        <Box ref={innerRef} display={'flex'} flexDirection={'column'} alignItems={'center'} mt={'3rem'} id={'about'}>
-            <Terminal text={aboutMeText()}/>
-            <Terminal text={skillsText()}/>
-            <Terminal text={miscText()}/>
+        <Box
+            ref={innerRef}
+            id="about"
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            px={{ xs: 4, md: 8 }}
+            py={6}
+            maxWidth="900px"
+            margin="0 auto"
+        >
+            <Typography variant="h3" gutterBottom>
+                About Me
+            </Typography>
+
+            <Typography variant="body1" fontSize="1.2rem" textAlign="center" mb={4}>
+                I’m Mark Sbitnev, a software developer with 5 years of hands-on experience building scalable, efficient solutions.
+                My background spans computer vision, machine learning, robotics, and 3D design. I love working on systems that blend
+                code and hardware, especially in robotic and embedded environments. I'm currently studying Computer Science (Hons)
+                at Toronto Metropolitan University and constantly exploring new ways to bring code into the physical world.
+            </Typography>
+
+            {/* Programming Languages */}
+            <SkillCategory title="Programming Languages" skills={[
+                'Python', 'C++', 'C#', 'JavaScript', 'SQL', 'BASH', 'Motorola 6809 Assembly'
+            ]} />
+
+            {/* 3D Design & Tools */}
+            <SkillCategory title="3D Design & Tools" skills={[
+                'Fusion 360', 'SolidWorks', 'Unity 3D', '3D Printing', 'Robotics Kinematics', 'CAD Modeling', 'Hardware Integration'
+            ]} />
+
+            {/* Other Technical Skills */}
+            <SkillCategory title="Other Technical Skills" skills={[
+                'React', 'YOLO Object Detection', 'TensorFlow', 'OpenCV', 'Arduino', 'Git', 'Agile Development', 'WebSocket', 'Embedded Systems'
+            ]} />
+
+            {/* Spoken Languages */}
+            <SkillCategory title="Spoken Languages" skills={[
+                'Russian (Native)', 'Hebrew (Fluent)', 'English (Fluent)'
+            ]} />
         </Box>
-    )
+    );
+}
+
+// Reusable subcomponent to display each skill category
+function SkillCategory({ title, skills }) {
+    return (
+        <Box width="100%" mb={4}>
+            <Typography variant="h5" mb={1} color="primary">
+                {title}
+            </Typography>
+            <Divider sx={{ mb: 1 }} />
+            <Box display="flex" flexWrap="wrap" gap={1}>
+                {skills.map((skill, idx) => (
+                    <Box
+                        key={idx}
+                        px={2}
+                        py={1}
+                        border="1px solid #888"
+                        borderRadius="20px"
+                        fontSize="0.95rem"
+                    >
+                        {skill}
+                    </Box>
+                ))}
+            </Box>
+        </Box>
+    );
 }
